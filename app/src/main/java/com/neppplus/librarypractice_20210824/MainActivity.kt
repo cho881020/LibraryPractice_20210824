@@ -1,6 +1,7 @@
 package com.neppplus.librarypractice_20210824
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -16,6 +17,16 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+        callBtn.setOnClickListener {
+
+
+//            전화 연결 (CALL) 활용.
+            val myUri = Uri.parse("tel:02-5555-8888")
+            val myIntent = Intent( Intent.ACTION_CALL, myUri )
+            startActivity(myIntent)
+
+        }
 
         profileImg.setOnClickListener {
 
