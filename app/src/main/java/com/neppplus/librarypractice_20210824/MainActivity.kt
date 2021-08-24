@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.gun0912.tedpermission.PermissionListener
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -20,11 +21,33 @@ class MainActivity : BaseActivity() {
 
         callBtn.setOnClickListener {
 
+//            TedPermission 라이브러리 활용 -> 권한 여부 대응 + 실제 체크
 
-//            전화 연결 (CALL) 활용.
-            val myUri = Uri.parse("tel:02-5555-8888")
-            val myIntent = Intent( Intent.ACTION_CALL, myUri )
-            startActivity(myIntent)
+            val pl = object : PermissionListener {
+
+                override fun onPermissionGranted() {
+
+//                    권한 승인되었을때 실행할 코드를 적는부분.
+
+//                    전화 연결 (CALL) 활용.
+                    val myUri = Uri.parse("tel:02-5555-8888")
+                    val myIntent = Intent( Intent.ACTION_CALL, myUri )
+                    startActivity(myIntent)
+
+                }
+
+                override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
+
+//                    토스트로 권한이 막혀서 못쓴다는 안내.
+                    Toast.makeText(mContext, "권한이 거부되어 전화연결이 불가합니다.", Toast.LENGTH_SHORT).show()
+
+                }
+
+
+            }
+
+
+
 
         }
 
