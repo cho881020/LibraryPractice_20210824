@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.gun0912.tedpermission.PermissionListener
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -69,6 +70,12 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setValues() {
+
+//        최근 활동 사진을 -> 인터넷에서 곧바로 다운받아 앱에서 보여주기.
+//         drawable에 붙여넣는 작업 없이 진행.
+
+        Glide.with(mContext).load("https://cdn.topstarnews.net/news/photo/201912/714847_426867_3336.jpeg").into(recentImg)
+
 
     }
 
